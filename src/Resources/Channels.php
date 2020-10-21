@@ -16,5 +16,11 @@ use SmartOysters\FarmOpsX\Response;
 
 class Channels extends Resource
 {
-    //
+    protected $disabled = ['list', 'fetch', 'create', 'update'];
+
+    public function Channels(int $teamId, int $channelId, bool $scheduleImport = true)
+    {
+        return $this->request->post('/', compact('teamId', 'channelId', 'scheduleImport'));
+    }
+
 }
