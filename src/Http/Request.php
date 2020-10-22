@@ -90,7 +90,12 @@ class Request
     {
         $content = $response->getContent();
 
-        if (!isset($content) || !($response->getStatusCode() == 302 || $response->isSuccess())) {
+        // Direct return of response when success
+        if (in_array($response->getStatusCode(), [200,201])) {
+            return $response;
+        }
+
+        if (!empty($content) || !($response->getStatusCode() == 302 || $response->isSuccess())) {
             if (in_array($response->getStatusCode(), [400, 403, 404, 410])) {
                 throw new ResponseException($content->error);
             }

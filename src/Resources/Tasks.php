@@ -16,5 +16,48 @@ use SmartOysters\FarmOpsX\Response;
 
 class Tasks extends Resource
 {
-    //
+    protected $disabled = ['list', 'fetch', 'create', 'update'];
+
+    /**
+     * Returns all tasks in the system
+     *
+     * @return \SmartOysters\FarmOpsX\Http\Response
+     */
+    public function all($status = null, $name = null)
+    {
+        return $this->request->get('', compact('status', 'name'));
+    }
+
+    /**
+     * Get a specific task
+     *
+     * @param int $id
+     * @return \SmartOysters\FarmOpsX\Http\Response
+     */
+    public function get(string $id)
+    {
+        return $this->request->get(':id', compact('id'));
+    }
+
+    /**
+     * Cancel a task, only when pending
+     *
+     * @param string $id
+     * @return \SmartOysters\FarmOpsX\Http\Response
+     */
+    public function cancel(string $id)
+    {
+        return $this->request->put(':id/cancel', compact('id'));
+    }
+
+    /**
+     * Restart a Task
+     *
+     * @param string $id
+     * @return \SmartOysters\FarmOpsX\Http\Response
+     */
+    public function restart(string $id)
+    {
+        return $this->request->put(':id/restart', compact('id'));
+    }
 }
