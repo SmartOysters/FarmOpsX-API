@@ -34,7 +34,7 @@ class RequestTest extends TestCase
         $mockClient = $this->createMock(Client::class);
         $mockResponse = $this->createMock(Response::class);
 
-        $mockResponse->expects($this->exactly(2))
+        $mockResponse->expects($this->exactly(1))
             ->method('isSuccess')
             ->willReturn(true);
         $mockResponse->expects($this->exactly(2))
@@ -66,7 +66,7 @@ class RequestTest extends TestCase
         $mockClient = $this->createMock(Client::class);
         $mockResponse = $this->createMock(Response::class);
 
-        $mockResponse->expects($this->exactly(2))
+        $mockResponse->expects($this->exactly(1))
             ->method('isSuccess')
             ->willReturn(true);
         $mockResponse->expects($this->exactly(2))
