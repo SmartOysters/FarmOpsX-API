@@ -1,6 +1,6 @@
 # FarmOpsX-API PHP Package
 
-[![Build Status](https://travis-ci.org/SmartOysters/farmopsx-api.svg?branch=main)](https://travis-ci.org/SmartOysters/farmopsx-api)
+[![Build Status](https://travis-ci.com/SmartOysters/farmopsx-api.svg?branch=main)](https://travis-ci.com/SmartOysters/farmopsx-api)
 
 This package provides a complete **framework agnostic** FarmOpsX API client library for PHP.
 
