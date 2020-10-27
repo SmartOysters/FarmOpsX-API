@@ -39,9 +39,9 @@ class FarmOpsXClient implements Client
     {
         list($headers, $query) = [[], []];
 
-        $headers = array_merge([
-            'Authorization' => "Token token=$token"
-        ]);
+        $headers = [
+            'Authorization' => "Basic $token"
+        ];
 
         $this->client = new GuzzleClient(array_merge([
             'base_uri' => $url,

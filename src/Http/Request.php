@@ -96,12 +96,16 @@ class Request
         }
 
         if (!empty($content) || !($response->getStatusCode() == 302 || $response->isSuccess())) {
-            if (in_array($response->getStatusCode(), [400, 403, 404, 410])) {
-                throw new ResponseException($content->error);
+            if (in_array($response->getStatusCode(), [400, 401, 403, 404, 410])) {
+                throw new ResponseException(
+                    (isset($content->error) ? $content->error->message : "Error unknown."),
+                    $response->getStatusCode()
+                );
             }
 
             throw new FarmOpsXException(
-                isset($content->error) ? $content->error : "Error unknown."
+                isset($content->error) ? $content->error->message : "Error unknown.",
+                $response->getStatusCode()
             );
         }
 
