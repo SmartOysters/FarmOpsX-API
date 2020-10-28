@@ -14,12 +14,12 @@ namespace SmartOysters\FarmOpsX\Resources;
 use SmartOysters\FarmOpsX\Resources\Base\Resource;
 use SmartOysters\FarmOpsX\Response;
 
-class Leases extends Resource
+class Shapes extends Resource
 {
     protected $disabled = ['list', 'fetch', 'create', 'update'];
 
     /**
-     * Returns all leases in the system
+     * Returns all shapes in the system
      *
      * @return \SmartOysters\FarmOpsX\Http\Response
      */
@@ -29,26 +29,26 @@ class Leases extends Resource
     }
 
     /**
-     * Get a specific Lease
+     * Get a specific Shape
      *
-     * @param int $leaseId
+     * @param int $shapeId
      * @return \SmartOysters\FarmOpsX\Http\Response
      */
-    public function get(int $leaseId)
+    public function get(int $shapeId)
     {
-        return $this->request->get(':leaseId', compact('leaseId'));
+        return $this->request->get(':shapeId', compact('shapeId'));
     }
 
     /**
-     * Add a capacity to a Lease
+     * Add a capacity to a Shape
      *
-     * @param int $leaseId
+     * @param int $shapeId
      * @param int $capacity
      * @return \SmartOysters\FarmOpsX\Http\Response
      */
-    public function capacity(int $leaseId, int $capacity)
+    public function capacity(int $shapeId, int $capacity)
     {
-        $data["$leaseId"] = $capacity;
+        $data["$shapeId"] = $capacity;
 
         return $this->request->put('capacity', $data);
     }

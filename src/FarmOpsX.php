@@ -15,15 +15,15 @@ use SmartOysters\FarmOpsX\Helpers\StringHelpers;
 use SmartOysters\FarmOpsX\Http\FarmOpsXClient;
 use SmartOysters\FarmOpsX\Http\Request;
 use SmartOysters\FarmOpsX\Resources\Channels;
-use SmartOysters\FarmOpsX\Resources\Leases;
+use SmartOysters\FarmOpsX\Resources\Shapes;
 use SmartOysters\FarmOpsX\Resources\Reports;
 use SmartOysters\FarmOpsX\Resources\Tasks;
 
 
 /**
  * @method Channels channels()
- * @method Leases leases()
  * @method Reports reports()
+ * @method Shapes shapes()
  * @method Tasks tasks()
  */
 class FarmOpsX

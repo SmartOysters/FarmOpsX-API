@@ -11,6 +11,7 @@
 
 namespace SmartOysters\FarmOpsX\Resources;
 
+use SmartOysters\FarmOpsX\Exception\FarmOpsXException;
 use SmartOysters\FarmOpsX\Resources\Base\Resource;
 use SmartOysters\FarmOpsX\Response;
 
@@ -64,17 +65,6 @@ class Reports extends Resource
     }
 
     /**
-     * Get Reports by SaferMe TeamID
-     *
-     * @param int $teamId
-     * @return \SmartOysters\FarmOpsX\Http\Response
-     */
-    public function team($teamId)
-    {
-        return $this->request->get('team/:teamId', compact('teamId'));
-    }
-
-    /**
      * Run the Exporter
      *
      * @param array $teamIds
@@ -99,11 +89,52 @@ class Reports extends Resource
      *
      * @param $teamId
      * @param array $chanelIds
+     * @param array $reportIds
      * @return \SmartOysters\FarmOpsX\Http\Response
      */
-    public function import($teamId, $chanelIds = [])
+    public function import($teamId, $chanelIds = [], $reportIds = [])
     {
-        return $this->request->post('import', compact('teamId', 'chanelIds'));
+        return $this->request->post('import', compact('teamId', 'chanelIds', 'reportIds'));
+    }
+
+    /**
+     * Get Latest Reports by SaferMe TeamID
+     *
+     * @param int $teamId
+     * @return \SmartOysters\FarmOpsX\Http\Response
+     */
+    public function latest($teamId)
+    {
+        return $this->request->get('latest', compact('teamId'));
+    }
+
+    /**
+     * Get Summary of Reports Generated
+     * Must provide any data input to return a result
+     *
+     * @param int $teamId
+     * @param int $channelId
+     * @param int $reportId
+     * @return \SmartOysters\FarmOpsX\Http\Response
+     */
+    public function summary($teamId = null, $channelId = null, $reportId = null)
+    {
+        if (is_null($teamId) && is_null($channelId) && is_null($reportId)) {
+            throw new FarmOpsXException('Please provide any element to see a data summary.', 422);
+        }
+
+        return $this->request->get('latest/summary', compact('teamId', 'channelId', 'reportId'));
+    }
+
+    /**
+     * Get Reports by SaferMe TeamID
+     *
+     * @param int $teamId
+     * @return \SmartOysters\FarmOpsX\Http\Response
+     */
+    public function team($teamId)
+    {
+        return $this->request->get('team/:teamId', compact('teamId'));
     }
 }
 

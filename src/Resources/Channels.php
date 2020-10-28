@@ -21,17 +21,22 @@ class Channels extends Resource
     /**
      * Add ChannelID into the scheduler
      *
-     * @param int  $teamId
-     * @param int  $channelId
-     * @param bool $scheduleImport
+     * @param int    $teamId         TeamId
+     * @param int    $channelId      ChannelId
+     * @param string $channelType    ChannelType value that the value has
+     * @param bool   $scheduleImport Should the channel be scheduled for import
+     * @param array  $options        Array of data that is saved into the metadata
      * @return \SmartOysters\FarmOpsX\Http\Response
      */
-    public function add(int $teamId, int $channelId, bool $scheduleImport = true)
+    public function add(int $teamId, int $channelId, $channelType = '', $scheduleImport = true, $options)
     {
         return $this->request->post('', [
             'teamId' => $teamId,
             'channelId' => $channelId,
-            'scheduleImport' => $scheduleImport
+            'channelType' => $channelType,
+            'metadata' => json_encode(array_merge([
+                'importReports' => $scheduleImport
+            ], $options))
         ]);
     }
 
@@ -41,9 +46,37 @@ class Channels extends Resource
      * @param int $channelId
      * @return \SmartOysters\FarmOpsX\Http\Response
      */
-    public function get(int $channelId)
+    public function get($channelId)
     {
         return $this->request->get(':channelId', compact('channelId'));
+    }
+
+    /**
+     * Update a channel
+     *
+     * @param int    $channelId    ChannelID
+     * @param string $channelType  ChannelType value that the value has
+     * @param array  $metadata     Array of data that is saved into the metadata
+     * @return \SmartOysters\FarmOpsX\Http\Response
+     */
+    public function edit($channelId, $channelType, $metadata)
+    {
+        return $this->request->put(':channelId', compact('channelId', 'channelType', 'metadata'));
+    }
+
+    /**
+     * Update the schedule of a Channel
+     *
+     * @param int     $channelId
+     * @param boolean $scheduleImport
+     * @return \SmartOysters\FarmOpsX\Http\Response
+     */
+    public function schedule($channelId, $scheduleImport = false)
+    {
+        return $this->request->put(':channelId/schedule', [
+            'channelId' => $channelId,
+            'importReports' => $scheduleImport
+        ]);
     }
 
     /**

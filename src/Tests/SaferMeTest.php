@@ -26,15 +26,15 @@ class FarmOpsXTest extends TestCase
     {
         $farmOpsX = new FarmOpsX();
 
-        $this->assertInstanceOf('SmartOysters\FarmOpsX\Resources\Leases', $farmOpsX->leases());
-        $this->assertInstanceOf('SmartOysters\FarmOpsX\Resources\Leases', $farmOpsX->Leases());
+        $this->assertInstanceOf('SmartOysters\FarmOpsX\Resources\Shapes', $farmOpsX->shapes());
+        $this->assertInstanceOf('SmartOysters\FarmOpsX\Resources\Shapes', $farmOpsX->Shapes());
     }
 
     public function testAlertAreasMagicMethod()
     {
         $farmOpsX = new FarmOpsX();
 
-        $this->assertInstanceOf('SmartOysters\FarmOpsX\Resources\Leases', $farmOpsX->leases);
-        $this->assertInstanceOf('SmartOysters\FarmOpsX\Resources\Leases', $farmOpsX->Leases);
+        $this->assertInstanceOf('SmartOysters\FarmOpsX\Resources\Shapes', $farmOpsX->shapes);
+        $this->assertInstanceOf('SmartOysters\FarmOpsX\Resources\Shapes', $farmOpsX->Shapes);
     }
 }
