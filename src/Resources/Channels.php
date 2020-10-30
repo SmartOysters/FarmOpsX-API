@@ -28,7 +28,7 @@ class Channels extends Resource
      * @param array  $options        Array of data that is saved into the metadata
      * @return \SmartOysters\FarmOpsX\Http\Response
      */
-    public function add(int $teamId, int $channelId, $channelType = '', $scheduleImport = true, $options)
+    public function add(int $teamId, int $channelId, $channelType = '', $scheduleImport = true, $options = [])
     {
         return $this->request->post('', [
             'teamId' => $teamId,
