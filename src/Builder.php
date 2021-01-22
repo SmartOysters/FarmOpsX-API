@@ -96,8 +96,10 @@ class Builder
 
     /**
      * Get the full URI with the endpoint if any.
+     *
+     * @return string
      */
-    protected function getEndpoint(): string
+    protected function getEndpoint()
     {
         $result = $this->getTarget();
 
@@ -111,8 +113,10 @@ class Builder
 
     /**
      * Get the options that are not replaced in the URI.
+     *
+     * @return array
      */
-    public function getQueryVars(array $options = []): array
+    public function getQueryVars(array $options = [])
     {
         $vars = $this->getParameters();
 
@@ -121,16 +125,20 @@ class Builder
 
     /**
      * Get the resource name
+     *
+     * @return string
      */
-    public function getResource(): string
+    public function getResource()
     {
         return $this->resource;
     }
 
     /**
      * Set the resource name
+     *
+     * @return Builder
      */
-    public function setResource($name): self
+    public function setResource($name)
     {
         $this->resource = $name;
 
@@ -139,16 +147,20 @@ class Builder
 
     /**
      * Get the target
+     *
+     * @return string
      */
-    public function getTarget(): string
+    public function getTarget()
     {
         return $this->target;
     }
 
     /**
      * Set the target.
+     *
+     * @return Builder
      */
-    public function setTarget($target): self
+    public function setTarget($target)
     {
         $this->target = $target;
 
@@ -157,8 +169,10 @@ class Builder
 
     /**
      * Set the application token.
+     *
+     * @return Builder
      */
-    public function setToken($token): self
+    public function setToken($token)
     {
         $this->token = $token;
 
@@ -167,8 +181,10 @@ class Builder
 
     /**
      * Get the base URL.
+     *
+     * @return string
      */
-    public function getBase(): string
+    public function getBase()
     {
         return $this->base;
     }
