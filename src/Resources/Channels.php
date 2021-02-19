@@ -65,17 +65,20 @@ class Channels extends Resource
     }
 
     /**
-     * Update the schedule of a Channel
+     * Add channel to import, and set the manner in which
+     * the reports are generated
      *
-     * @param int     $channelId
-     * @param boolean $scheduleImport
+     * @param int   $channelId
+     * @param array $reports
      * @return \SmartOysters\FarmOpsX\Http\Response
      */
-    public function schedule($channelId, $scheduleImport = false)
+    public function import($channelId, array $reports = [])
     {
-        return $this->request->put(':channelId/schedule', [
+        $defaults = ['notifier' => false, 'scheduled' => false];
+
+        return $this->request->put(':channelId/import', [
             'channelId' => $channelId,
-            'importReports' => $scheduleImport
+            'reports' => array_merge($defaults, $reports)
         ]);
     }
 

@@ -18,12 +18,14 @@ use SmartOysters\FarmOpsX\Resources\Channels;
 use SmartOysters\FarmOpsX\Resources\Shapes;
 use SmartOysters\FarmOpsX\Resources\Reports;
 use SmartOysters\FarmOpsX\Resources\Tasks;
+use SmartOysters\FarmOpsX\Resources\Sync;
 
 
 /**
  * @method Channels channels()
  * @method Reports reports()
  * @method Shapes shapes()
+ * @method Sync sync()
  * @method Tasks tasks()
  */
 class FarmOpsX
@@ -54,7 +56,7 @@ class FarmOpsX
     /**
      * SaferMe constructor
      */
-    public function __construct($token = '', $uri = 'http://farmopsx-api-dev.eba-afjcu73g.ap-southeast-2.elasticbeanstalk.com/api/', $options = [])
+    public function __construct($token = '', $uri = 'http://api.smartoysters.com/api/', $options = [])
     {
         $this->token = $token;
         $this->baseURI = $uri;

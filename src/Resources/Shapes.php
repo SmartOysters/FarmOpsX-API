@@ -52,4 +52,15 @@ class Shapes extends Resource
 
         return $this->request->put('capacity', $data);
     }
+
+    /**
+     * Rebuild the items for a shape
+     *
+     * @param array $shapeData
+     * @return \SmartOysters\FarmOpsX\Http\Response
+     */
+    public function rebuild($shapeData = [])
+    {
+        return $this->request->post('items/rebuild', compact('shapeData'));
+    }
 }
