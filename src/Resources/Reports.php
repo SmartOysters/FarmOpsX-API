@@ -46,11 +46,12 @@ class Reports extends Resource
      * Get Reports by SaferMe ChannelID
      *
      * @param string $id
+     * @param bool   $includePrevious Include reference to previous report with query
      * @return \SmartOysters\FarmOpsX\Http\Response
      */
-    public function report($id)
+    public function report($id, $includePrevious = false)
     {
-        return $this->request->get('entry/:id', compact('id'));
+        return $this->request->get('entry/:id', compact('id', 'includePrevious'));
     }
 
     /**
