@@ -24,11 +24,12 @@ class Channels extends Resource
      * @param int    $teamId         TeamId
      * @param int    $channelId      ChannelId
      * @param string $channelType    ChannelType value that the value has
+     * @param string $saleableType   SaleableType value that the channel has
      * @param bool   $scheduleImport Should the channel be scheduled for import
      * @param array  $options        Array of data that is saved into the metadata
      * @return \SmartOysters\FarmOpsX\Http\Response
      */
-    public function add(int $teamId, int $channelId, $channelType = '', $scheduleImport = [], $options = [])
+    public function add(int $teamId, int $channelId, $channelType = '', $saleableType = '', $scheduleImport = [], $options = [])
     {
         $scheduleImport = array_merge(['notifier' => false, 'scheduled' => false], $scheduleImport);
 
@@ -36,6 +37,7 @@ class Channels extends Resource
             'teamId' => $teamId,
             'channelId' => $channelId,
             'channelType' => $channelType,
+            'saleableType' => $saleableType,
             'metadata' => json_encode(array_merge([
                 'importReports' => $scheduleImport
             ], $options))
@@ -58,12 +60,13 @@ class Channels extends Resource
      *
      * @param int    $channelId    ChannelID
      * @param string $channelType  ChannelType value that the value has
+     * @param string $saleableType SaleableType value that the channel has
      * @param array  $metadata     Array of data that is saved into the metadata
      * @return \SmartOysters\FarmOpsX\Http\Response
      */
-    public function edit($channelId, $channelType, $metadata)
+    public function edit($channelId, $channelType = '', $saleableType = '', $metadata = [])
     {
-        return $this->request->put(':channelId', compact('channelId', 'channelType', 'metadata'));
+        return $this->request->put(':channelId', compact('channelId', 'channelType', 'saleableType', 'metadata'));
     }
 
     /**
