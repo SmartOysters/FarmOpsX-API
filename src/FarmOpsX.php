@@ -15,6 +15,7 @@ use SmartOysters\FarmOpsX\Helpers\StringHelpers;
 use SmartOysters\FarmOpsX\Http\FarmOpsXClient;
 use SmartOysters\FarmOpsX\Http\Request;
 use SmartOysters\FarmOpsX\Resources\Channels;
+use SmartOysters\FarmOpsX\Resources\Farms;
 use SmartOysters\FarmOpsX\Resources\Shapes;
 use SmartOysters\FarmOpsX\Resources\Reports;
 use SmartOysters\FarmOpsX\Resources\Tasks;
@@ -25,6 +26,7 @@ use SmartOysters\FarmOpsX\Resources\Sync;
  * @method Channels channels()
  * @method Reports reports()
  * @method Shapes shapes()
+ * @method Farms farms()
  * @method Sync sync()
  * @method Tasks tasks()
  */
