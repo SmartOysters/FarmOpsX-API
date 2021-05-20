@@ -67,9 +67,19 @@ class Channels extends Resource
      * @param array  $metadata     Array of data that is saved into the metadata
      * @return \SmartOysters\FarmOpsX\Http\Response
      */
-    public function edit($channelId, $channelType = '', $saleableType = '', $cropType = '', $metadata = [])
+    public function edit($channelId, $channelType = '', $saleableType = '', $cropType = '', $scheduleImport = [], $options = [])
     {
-        return $this->request->put(':channelId', compact('channelId', 'channelType', 'saleableType', 'cropType', 'metadata'));
+        $scheduleImport = array_merge(['notifier' => false, 'scheduled' => false], $scheduleImport);
+
+        return $this->request->put(':channelId', [
+            'channelId' => $channelId,
+            'channelType' => $channelType,
+            'saleableType' => $saleableType,
+            'cropType' => $cropType,
+            'metadata' => json_encode(array_merge([
+                'importReports' => $scheduleImport
+            ], $options))
+        ]);
     }
 
     /**
