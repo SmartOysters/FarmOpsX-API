@@ -25,11 +25,12 @@ class Channels extends Resource
      * @param int    $channelId      ChannelId
      * @param string $channelType    ChannelType value that the value has
      * @param string $saleableType   SaleableType value that the channel has
+     * @param string $cropType       CropType value that the Channel needs
      * @param bool   $scheduleImport Should the channel be scheduled for import
      * @param array  $options        Array of data that is saved into the metadata
      * @return \SmartOysters\FarmOpsX\Http\Response
      */
-    public function add(int $teamId, int $channelId, $channelType = '', $saleableType = '', $scheduleImport = [], $options = [])
+    public function add(int $teamId, int $channelId, $channelType = '', $saleableType = '', $cropType = '', $scheduleImport = [], $options = [])
     {
         $scheduleImport = array_merge(['notifier' => false, 'scheduled' => false], $scheduleImport);
 
@@ -38,6 +39,7 @@ class Channels extends Resource
             'channelId' => $channelId,
             'channelType' => $channelType,
             'saleableType' => $saleableType,
+            'cropType' => $cropType,
             'metadata' => json_encode(array_merge([
                 'importReports' => $scheduleImport
             ], $options))
@@ -61,12 +63,13 @@ class Channels extends Resource
      * @param int    $channelId    ChannelID
      * @param string $channelType  ChannelType value that the value has
      * @param string $saleableType SaleableType value that the channel has
+     * @param string $cropType     CropType value that the Channel needs
      * @param array  $metadata     Array of data that is saved into the metadata
      * @return \SmartOysters\FarmOpsX\Http\Response
      */
-    public function edit($channelId, $channelType = '', $saleableType = '', $metadata = [])
+    public function edit($channelId, $channelType = '', $saleableType = '', $cropType = '', $metadata = [])
     {
-        return $this->request->put(':channelId', compact('channelId', 'channelType', 'saleableType', 'metadata'));
+        return $this->request->put(':channelId', compact('channelId', 'channelType', 'saleableType', 'cropType', 'metadata'));
     }
 
     /**
