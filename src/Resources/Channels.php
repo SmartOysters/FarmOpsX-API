@@ -119,6 +119,23 @@ class Channels extends Resource
     }
 
     /**
+     * Manage the Deleted and Archived status of the channel
+     *
+     * @param int   $channelId
+     * @param bool  $isDeleted
+     * @param bool  $isArchived
+     * @return \SmartOysters\FarmOpsX\Http\Response
+     */
+    public function manage($channelId, $isDeleted = false, $isArchived = false)
+    {
+        return $this->request->put(':channelId/manage', [
+            'channelId' => $channelId,
+            'isDeleted' => $isDeleted,
+            'isArchived' => $isArchived,
+        ]);
+    }
+
+    /**
      * Get the Channels listed by the TeamId
      *
      * @param int $teamId
