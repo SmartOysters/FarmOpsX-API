@@ -58,7 +58,7 @@ class FarmOpsX
     /**
      * SaferMe constructor
      */
-    public function __construct($token = '', $uri = 'http://api.smartoysters.com/api/', $options = [])
+    public function __construct($token = '', $uri = 'https://api.smartoysters.com/api/', $options = [])
     {
         $this->token = $token;
         $this->baseURI = $uri;
