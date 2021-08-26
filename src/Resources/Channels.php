@@ -19,7 +19,7 @@ class Channels extends Resource
     protected $disabled = ['list', 'fetch', 'create', 'update'];
 
     /**
-     * Add ChannelID into the scheduler
+     * Add ChannelID into the Reporting Database
      *
      * @param int    $teamId         TeamId
      * @param int    $channelId      ChannelId
@@ -35,6 +35,37 @@ class Channels extends Resource
         $scheduleImport = array_merge(['notifier' => false, 'scheduled' => false], $scheduleImport);
 
         return $this->request->post('', [
+            'teamId' => $teamId,
+            'channelId' => $channelId,
+            'channelType' => $channelType,
+            'saleableType' => $saleableType,
+            'cropType' => $cropType,
+            'metadata' => json_encode(array_merge([
+                'importReports' => $scheduleImport
+            ], $options))
+        ]);
+    }
+
+    /**
+     * Add ChannelID into the Reporting Database
+     * This Queues the addition of the Channel to process when the API
+     * is ready.
+     * Will return TASK
+     *
+     * @param int    $teamId         TeamId
+     * @param int    $channelId      ChannelId
+     * @param string $channelType    ChannelType value that the value has
+     * @param string $saleableType   SaleableType value that the channel has
+     * @param string $cropType       CropType value that the Channel needs
+     * @param bool   $scheduleImport Should the channel be scheduled for import
+     * @param array  $options        Array of data that is saved into the metadata
+     * @return \SmartOysters\FarmOpsX\Http\Response
+     */
+    public function addByQueue(int $teamId, int $channelId, $channelType = '', $saleableType = '', $cropType = '', $scheduleImport = [], $options = [])
+    {
+        $scheduleImport = array_merge(['notifier' => false, 'scheduled' => false], $scheduleImport);
+
+        return $this->request->post('queue', [
             'teamId' => $teamId,
             'channelId' => $channelId,
             'channelType' => $channelType,
