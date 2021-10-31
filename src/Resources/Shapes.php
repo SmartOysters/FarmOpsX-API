@@ -16,7 +16,7 @@ use SmartOysters\FarmOpsX\Response;
 
 class Shapes extends Resource
 {
-    protected $disabled = ['list', 'fetch', 'create', 'update'];
+    protected $disabled = ['list', 'fetch', 'create', 'update', 'delete'];
 
     /**
      * Returns all shapes in the system
@@ -62,5 +62,16 @@ class Shapes extends Resource
     public function rebuild($shapeData = [])
     {
         return $this->request->post('items/rebuild', compact('shapeData'));
+    }
+
+    /**
+     * Mark the Shape as deleted
+     *
+     * @param int $shapeId
+     * @return \SmartOysters\FarmOpsX\Http\Response
+     */
+    public function markDeleted($shapeId)
+    {
+        return $this->request->delete(':shapeId', compact('shapeId'));
     }
 }
