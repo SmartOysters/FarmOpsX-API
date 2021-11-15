@@ -30,6 +30,19 @@ class Sync extends Resource
     }
 
     /**
+     * Force Update a Report
+     * Ensures a new EntryId is created for report, if the `updated_at`
+     * date has not changed in SaferMe
+     *
+     * @param array $data
+     * @return \SmartOysters\FarmOpsX\Http\Response
+     */
+    public function forceReport($data = [])
+    {
+        return $this->request->post('external/farmopsx/report', compact('data'));
+    }
+
+    /**
      * Send packet of data into the system to injest content
      *
      * @param string $model
