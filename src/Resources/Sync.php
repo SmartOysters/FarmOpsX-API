@@ -34,12 +34,13 @@ class Sync extends Resource
      * Ensures a new EntryId is created for report, if the `updated_at`
      * date has not changed in SaferMe
      *
-     * @param array $data
+     * @param int $channelId
+     * @param int $reportId
      * @return \SmartOysters\FarmOpsX\Http\Response
      */
-    public function forceReport($data = [])
+    public function forceReport($channelId, $reportId)
     {
-        return $this->request->post('external/farmopsx/report', compact('data'));
+        return $this->request->post('external/farmopsx/report', ['channel_id' => $channelId, 'report_id' => $reportId]);
     }
 
     /**
