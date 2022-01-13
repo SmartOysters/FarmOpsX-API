@@ -92,18 +92,20 @@ class Channels extends Resource
      * Update a channel
      *
      * @param int    $channelId    ChannelID
+     * @param string $channelName  ChannelName value that the value has
      * @param string $channelType  ChannelType value that the value has
      * @param string $saleableType SaleableType value that the channel has
      * @param string $cropType     CropType value that the Channel needs
      * @param array  $metadata     Array of data that is saved into the metadata
      * @return \SmartOysters\FarmOpsX\Http\Response
      */
-    public function edit($channelId, $channelType = '', $saleableType = '', $cropType = '', $scheduleImport = [], $options = [])
+    public function edit($channelId, $channelName = '', $channelType = '', $saleableType = '', $cropType = '', $scheduleImport = [], $options = [])
     {
         $scheduleImport = array_merge(['notifier' => false, 'scheduled' => false], $scheduleImport);
 
         return $this->request->put(':channelId', [
             'channelId' => $channelId,
+            'channelName' => $channelName,
             'channelType' => $channelType,
             'saleableType' => $saleableType,
             'cropType' => $cropType,
