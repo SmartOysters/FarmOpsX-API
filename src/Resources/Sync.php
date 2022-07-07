@@ -44,6 +44,17 @@ class Sync extends Resource
     }
 
     /**
+     * Run User Activity for an Entry
+     *
+     * @param string $entryId
+     * @return \SmartOysters\FarmOpsX\Http\Response
+     */
+    public function userActivity($entryId)
+    {
+        return $this->request->post('external/oceanfarmr/user-activity', ['entry_id' => $entryId]);
+    }
+
+    /**
      * Send packet of data into the system to injest content
      *
      * @param string $model
