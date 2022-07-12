@@ -42,4 +42,18 @@ class Farms extends Resource
             'farmId' => $farmId
         ], $values));
     }
+
+    /**
+     * Edit Farm mapping information
+     *
+     * @param int   $teamId
+     * @param array $values
+     * @return \SmartOysters\FarmOpsX\Http\Response
+     */
+    public function mapping($teamId, $values = [])
+    {
+        return $this->request->put('mapping/:teamId', array_merge([
+            'teamId' => $teamId
+        ], $values));
+    }
 }
