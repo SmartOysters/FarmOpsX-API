@@ -26,7 +26,7 @@ class Sync extends Resource
      */
     public function externalReport($data = [])
     {
-        return $this->request->post('external/saferme/report', compact('data'));
+        return $this->request->post('external/saferme/report', $data);
     }
 
     /**
