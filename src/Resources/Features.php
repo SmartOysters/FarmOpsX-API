@@ -28,4 +28,15 @@ class Features extends Resource
     {
         return $this->request->delete(':featureId', compact('featureId'));
     }
+
+    /**
+     * Create the Features for a dataset
+     *
+     * @param int $featureId
+     * @return \SmartOysters\FarmOpsX\Http\Response
+     */
+    public function rebuild($data = [])
+    {
+        return $this->request->post('rebuild', $data);
+    }
 }
