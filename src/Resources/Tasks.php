@@ -60,4 +60,16 @@ class Tasks extends Resource
     {
         return $this->request->put(':id/restart', compact('id'));
     }
+
+    /**
+     * Push a Task into the queue
+     *
+     * @return \SmartOysters\FarmOpsX\Http\Response
+     */
+    public function push(string $name, ?array $parameters)
+    {
+        $options = array_merge(compact('name'), compact('parameters'));
+
+        return $this->request->post('/push', $options);
+    }
 }
