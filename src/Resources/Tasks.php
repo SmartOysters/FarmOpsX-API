@@ -66,10 +66,10 @@ class Tasks extends Resource
      *
      * @return \SmartOysters\FarmOpsX\Http\Response
      */
-    public function push(string $name, ?array $parameters)
+    public function push(string $name, array $parameters)
     {
         $options = array_merge(compact('name'), compact('parameters'));
 
-        return $this->request->post('/push', $options);
+        return $this->request->post('push', $options);
     }
 }
