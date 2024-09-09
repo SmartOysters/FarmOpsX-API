@@ -25,7 +25,7 @@ class ViewReportsHarvestReports extends Resource
      * @param array  $harvestReportIds            Array of Harvest Report IDs
      * @return \SmartOysters\FarmOpsX\Http\Response
      */
-    public function updateReport(string $harvestGradingEntryId, ?array $harvestReportIds = [])
+    public function updateReport(string $harvestGradingEntryId, array $harvestReportIds)
     {
         $options = array_merge(compact('harvestGradingEntryId'), [
             'harvest_report_ids' => $harvestReportIds
