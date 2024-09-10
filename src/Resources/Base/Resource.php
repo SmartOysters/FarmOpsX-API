@@ -123,7 +123,7 @@ abstract class Resource
     {
         $reflection = new ReflectionClass($this);
 
-        return $reflection->getShortName();
+        return $this->snakeCase($reflection->getShortName());
     }
 
     /**

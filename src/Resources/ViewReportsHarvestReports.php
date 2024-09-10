@@ -11,6 +11,7 @@
 
 namespace SmartOysters\FarmOpsX\Resources;
 
+use ReflectionClass;
 use SmartOysters\FarmOpsX\Resources\Base\Resource;
 use SmartOysters\FarmOpsX\Response;
 
@@ -32,5 +33,17 @@ class ViewReportsHarvestReports extends Resource
         ]);
 
         return $this->request->post(':harvestGradingEntryId/update', $options);
+    }
+
+    /**
+     * Get the endpoint name based on the name class.
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        $reflection = new ReflectionClass($this);
+
+        return $reflection->getShortName();
     }
 }
